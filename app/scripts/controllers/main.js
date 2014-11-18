@@ -63,7 +63,7 @@ angular.module('themeBuilderApp')
 					
 					var lessVars = {};
 					
-					// if config.json
+					// if file is 'config.json'
 					if( file.name.split('.').pop() === 'json'){
 						
 						lessVars = angular.fromJson( evt.target.result );
@@ -73,7 +73,7 @@ angular.module('themeBuilderApp')
 						console.log(lessVars.vars);
 					}
 
-					// if variables.less
+					// if file is 'variables.less'
 					else if(file.name.split('.').pop() === 'less'){
 						
 						// get each line in an array
@@ -88,14 +88,11 @@ angular.module('themeBuilderApp')
 								// var name
 								var lessVar = newVal.split(':')[0];
 
-								// var var value
-								// var lessVarValue = newVal.split(':')[1].replace(/^\s+/, '').replace(';', '');
-								var lessVarValue = newVal.split(':')[1];
-								lessVarValue = lessVarValue.replace(/^\s+/, '');
-								lessVarValue = lessVarValue.split(';')[0];
+								var lessVarValue = newVal.split(':')[1]; // get the var
+								lessVarValue = lessVarValue.replace(/^\s+/, ''); // delete unwanted spaces before var value
+								lessVarValue = lessVarValue.split(';')[0]; // detele unwanted characters after the var value
 
-								lessVars[lessVar] = lessVarValue;
-								// less.modifyVars( {lessVar: lessVarValue} );
+								lessVars[lessVar] = lessVarValue; // add var/value to parent object
 							}
 						});
 
@@ -118,6 +115,15 @@ angular.module('themeBuilderApp')
 
 		dropZone.addEventListener('dragover', handleDragOver, false);
 		dropZone.addEventListener('drop', handleFileSelect, false);
+
+
+		// ------------------------------------------------------------------------------
+		// > GENERATE CUSTOM THEME
+		// ------------------------------------------------------------------------------
+		$scope.generateTheme = function(){
+			
+			$scope.css = document.getElementById('less:styles-bootstrap-bootstrap').innerHTML;
+		};
 
 
 	});

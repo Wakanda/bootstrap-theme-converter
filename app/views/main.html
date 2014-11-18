@@ -1,6 +1,4 @@
 <div class="jumbotron">
-	
-	<button ng-click="loadBasicVars()">RESET</button>
 
 	<h3>Drop a "config.json" or "variables.less" file above</h3>
 	<div class="row">
@@ -56,7 +54,12 @@
 	<div class="clearfix"></div>
 
 	<section ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
-
+	
+	<br>
+	<div class="row">
+		<button class="btn btn-primary" ng-click="loadBasicVars()">RESET</button>
+		<button class="btn btn-primary" ng-click="generateTheme()">GENERATE</button>
+	</div>
 </div>
 
 
