@@ -122,7 +122,7 @@ angular.module('themeBuilderApp')
 		// ------------------------------------------------------------------------------
 		$scope.generateTheme = function(){
 			
-			$scope.css = document.getElementById('less:styles-bootstrap-bootstrap').innerHTML;
+			$scope.resultedCss = document.getElementById('less:styles-bootstrap-bootstrap').innerHTML;
 		};
 
 
