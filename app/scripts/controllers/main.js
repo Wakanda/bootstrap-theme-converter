@@ -11,13 +11,23 @@ angular.module('themeBuilderApp')
 	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings) {
 
 
-		// Load basics less vars from config.json (in styles/bootstrap folder)
-		bootstrapSettings.get().$promise.then(function(data){
+		// ------------------------------------------------------------------------------
+		// > Load basics less vars from config.json (in styles/bootstrap folder)
+		// ------------------------------------------------------------------------------
+		$scope.loadBasicVars = function(){
+			bootstrapSettings.get().$promise.then(function(data){
 
-			$scope.lessVars = data.vars;
-		});		
+				$scope.lessVars = data.vars;
+				$scope.refresh();
+			});
+		};
 
-		// Refresh and apply less vars (with a timeout for direct input typing)
+		$scope.loadBasicVars();
+		
+
+		// ------------------------------------------------------------------------------
+		// > Refresh and apply less vars (with a timeout for direct input typing)
+		// ------------------------------------------------------------------------------
 		$scope.refresh = function(){
 			$timeout(function() {
 				less.modifyVars( $scope.lessVars );
@@ -105,7 +115,6 @@ angular.module('themeBuilderApp')
 				};
 			}
 		}
-
 
 		dropZone.addEventListener('dragover', handleDragOver, false);
 		dropZone.addEventListener('drop', handleFileSelect, false);
