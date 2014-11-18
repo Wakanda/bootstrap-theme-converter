@@ -12,30 +12,39 @@ angular.module('themeBuilderApp')
 
 
 		$scope.themeDetails = {
-			"name": "My Theme",
-			"author": "Grumpy Cat",
-			"repository":{
-				"type":"git",
-				"url":"Repo Url"
+			'name': 'My Theme',
+			'author': 'Grumpy Cat',
+			'repository':{
+				'type':'git',
+				'url':'Repo Url'
 			},
-			"copyright":"GNU GPL v3, AGPL v3, Commercial",
-			"license":"MIT",
-			"engines":{
-				"wakanda":">=11"
+			'copyright':'GNU GPL v3, AGPL v3, Commercial',
+			'license':'MIT',
+			'engines':{
+				'wakanda':'>=11'
 			},
-			"studio":{
-				"label":"Wakanda Corporate",
-				"mobile":"false"
+			'studio':{
+				'label':'Wakanda Corporate',
+				'mobile':'false'
 			},
-			"version":"1.0.0",
-			"loadDependencies":[
+			'version':'1.0.0',
+			'loadDependencies':[
 				{
-					"id":"wakanda_corporate/wakanda_corporate.css",
-					"path":"THEMES_CUSTOM"
+					'id': '',
+					'path':'THEMES_CUSTOM'
 				}
 			],
-			"hash":"91038c8630d0ca29ba43354e7b3a79322720d3d7"
+			'hash':'91038c8630d0ca29ba43354e7b3a79322720d3d7'
 		};
+
+
+		$scope.$watch('themeDetails', function(newVal){
+			
+			$scope.secureName = newVal.name.toLowerCase().replace(/ /g, '_');
+
+			$scope.themeDetails.loadDependencies[0].id = $scope.secureName +'/'+ $scope.secureName +'.css' ;
+		});
+		
 
 
 		// ------------------------------------------------------------------------------
@@ -150,7 +159,36 @@ angular.module('themeBuilderApp')
 		$scope.generateTheme = function(){
 			
 			$scope.resultedCss = document.getElementById('less:styles-bootstrap-bootstrap').innerHTML;
+
+			var zip = new JSZip();
+
+			var folder = zip.folder($scope.secureName);
+
+			folder.file( 'package.json', angular.toJson( $scope.themeDetails ) ); // package.json
+			folder.file( $scope.secureName +'.css', $scope.resultedCss ); // package.json
+
+			// var img = zip.folder('images');
+			// img.file('smile.gif', imgData, {base64: true});
+
+			var content = zip.generate({type: 'blob'});
+
+			// FileSaver.js
+			saveAs( content, $scope.secureName+'.zip' );
+
 		};
 
 
 	});
+
+
+
+
+
+
+
+
+
+
+
+
+
