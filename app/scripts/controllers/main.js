@@ -8,12 +8,16 @@
  * Controller of the themeBuilderApp
  */
 angular.module('themeBuilderApp')
-	.controller('MainCtrl', function ($scope, $timeout) {
+	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings) {
 
 
+		// Load basics less vars from config.json (in styles/bootstrap folder)
+		bootstrapSettings.get().$promise.then(function(data){
 
-		$scope.lessVars = '';
+			$scope.lessVars = data.vars;
+		});		
 
+		// Refresh and apply less vars (with a timeout for direct input typing)
 		$scope.refresh = function(){
 			$timeout(function() {
 				less.modifyVars( $scope.lessVars );
