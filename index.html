@@ -1,16 +1,77 @@
-<!doctype html> <html class="no-js"> <head> <meta charset="utf-8"> <title>Wakanda Theme Builder</title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/main.a5896f90.css"> <link rel="stylesheet/less" type="text/css" href="styles/bootstrap/bootstrap.less"> <style>.less-error-message{
+<!doctype html> <html class="no-js"> <head> <meta charset="utf-8"> <title>Wakanda Theme Builder</title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> <link rel="stylesheet" href="styles/main.a5896f90.css"> <link rel="stylesheet/less" type="text/css" href="styles/bootstrap/bootstrap.less"> <style>body{
+				padding: 5rem;
+				padding-top: 2rem;
+			}
+			
+			.site-header{
+				text-align: center;
+				display: table;
+				margin: 0 auto;
+				margin-bottom: 2rem;
+			}
+			.site-header img{
+				margin-right: 1rem;
+			}
+			.site-title{
+				display: table-cell;
+			}
+			.site-header h1{
+				font-size: 5rem;
+				margin: 0;
+				text-align: left;
+			}
+			.site-header p{
+				font-size: 2rem;
+				text-transform: uppercase;
+				color: #acacac;
+				text-align: left;
+			}
+			h2{
+				text-align: left;
+			}
+			.select-var-cat{
+				text-align: center;
+			}
+			.select-var-cat select{
+				width: 20rem;
+			}
+			.edit-vars{
+				position: relative;
+				background-color: #F3F3F3;
+				margin: 2rem 0;
+				margin-top: 4rem;
+				padding: 2rem;
+			}
+			.edit-vars:before{
+				content: '';
+				display: block;
+				position: absolute;
+				top: -4rem;
+				right: 25%;
+				border: 2rem solid transparent;
+				border-bottom-color: #F3F3F3;
+			}
+
+
+			.less-error-message{
 				display: none;
 			}
 			#drop_zone{
 				border: 4px dashed #acacac; 
 				text-align: center; 
-				margin: 2rem 0;
+				margin-bottom: 2rem;
 				height: 15rem;
 				line-height: 15rem;
 				font-size: 2rem;
-			}</style>  <body ng-app="themeBuilderApp"> <!--[if lt IE 7]>
-			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]--> <!-- Add your site or application content here --> <div class="container-fluid"> <h3 class="text-muted">Wakanda Theme Builder</h3> <div ng-view=""></div> <div id="preview" ng-include="'views/preview.html'"></div> </div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			}
+			.less-buttons{
+				text-align: center;
+				margin-top: 2rem;
+			}
+			#preview{
+				margin: 8%;
+				margin-top: 0;
+			}</style>  <body ng-app="themeBuilderApp"> <header class="site-header"> <img src="images/wakanda-themes.d31a4e34.svg" alt=""> <div class="site-title"> <h1>wakanda</h1> <p>Theme Builder</p> </div> </header> <div ng-view=""></div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
@@ -19,6 +80,6 @@
 			 ga('send', 'pageview');</script> <!--[if lt IE 9]>
 		<script src="scripts/oldieshim.a466b7b1.js"></script>
 		<![endif]--> <script src="scripts/vendor.3ca37a36.js"></script> <script src="http://code.jquery.com/jquery-1.11.1.js"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> <script>less = {
-						env: "development",
-						logLevel: 0
-					};</script> <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.0.0/less.min.js"></script> <script src="scripts/scripts.1697843e.js"></script>  
+				env: "development",
+				logLevel: 0
+			};</script> <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.0.0/less.min.js"></script> <script src="scripts/scripts.1697843e.js"></script>  
