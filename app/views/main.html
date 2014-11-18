@@ -1,84 +1,154 @@
 <div class="jumbotron">
 
-	<h3>Drop a "config.json" or "variables.less" file above</h3>
-	<div class="row">
-		<div id="drop_zone" class="col-xs-8 col-xs-offset-2 col-xs-push-2">
-			Drop here !
+	<div class="container-fluid">
+		<h2>Theme Details</h2>
+		<br><br>
+
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="input-group">
+					<label for="theme-name" class="input-group-addon">Theme name</label>
+					<input id="theme-name" type="text" ng-model="themeDetails.name" class="form-control">
+				</div>
+			</div>
+			
+			<div class="col-xs-3">
+				<div class="input-group">
+					<label for="theme-version" class="input-group-addon">Theme version</label>
+					<input id="theme-version" type="text" ng-model="themeDetails.version" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="input-group">
+					<label for="theme-author" class="input-group-addon">Theme author</label>
+					<input id="theme-author" type="text" ng-model="themeDetails.author" class="form-control">
+				</div>
+			</div>
 		</div>
-	</div>
-
-	<h4>or</h4>
-
-	<h3>Edit each section manually here</h3>
-
-	<div role="group">
-		<select ng-model="selectedCat">
-			<option value="colors">Colors</option>
-			<option value="scaffolding">Scaffolding</option>
-			<option value="typography">Typography</option>
-			<option value="iconography">Iconography</option>
-			<option value="components">Components</option>
-			<option value="tables">Tables</option>
-			<option value="options">options</option>
-			<option value="forms">Forms</option>
-			<option value="dropdowns">Dropdowns</option>
-			<!-- <option value="media-queries-breakpoints">Media queries breakpoints</option> -->
-			<!-- <option value="grid-system">Grid system</option> -->
-			<option value="container sizes">Container sizes</option>
-			<option value="navbar">Navbar</option>
-			<option value="navs">Navs</option>
-			<option value="tabs">Tabs</option>
-			<option value="pills">Pills</option>
-			<option value="pagination">Pagination</option>
-			<option value="pager">Pager</option>
-			<option value="jumbotron">Jumbotron</option>
-			<option value="form-states-and-alerts">Form states and alerts</option>
-			<option value="tooltips">Tooltips</option>
-			<!-- <option value="popovers">Popovers</option> -->
-			<option value="labels">Labels</option>
-			<option value="modals">Modals</option>
-			<option value="alerts">Alerts</option>
-			<option value="progress bars">Progress bars</option>
-			<option value="optionst group">optionst group</option>
-			<option value="panels">Panels</option>
-			<option value="thumbnails">Thumbnails</option>
-			<option value="wells">Wells</option>
-			<option value="badges">Badges</option>
-			<option value="breadcrumbs">Breadcrumbs</option>
-			<option value="carousel">Carousel</option>
-			<option value="close">Close</option>
-			<option value="code">Code</option>
-			<option value="type">Type</option>
-		</select>
-	</div>
-	<div class="clearfix"></div>
-
-	<section ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
-	
-	<br>
-	<div class="row">
-
-		<button class="btn btn-primary" ng-click="loadBasicVars()">RESET</button>
-		<button class="btn btn-primary" ng-click="generateTheme()" data-toggle="modal" data-target="#resultedCssModal">GENERATE</button>
-
-		<!-- Modal -->
-			<div class="modal fade" id="resultedCssModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="myModalLabel">Resulted CSS</h4>
-					</div>
-
-					<div class="modal-body">
-						{{resultedCss}}
-					</div>
-
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="input-group">
+					<label for="theme-repo" class="input-group-addon">Theme repository url</label>
+					<input id="theme-repo" type="text" ng-model="themeDetails.repository.url" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="input-group">
+					<label for="theme-license" class="input-group-addon">Theme license</label>
+					<input id="theme-license" type="text" ng-model="themeDetails.license" class="form-control">
 				</div>
 			</div>
 		</div>
 
+	</div>
+	<div class="clearfix"></div>
+	<br><br>
+
+
+
+
+	<div class="row">
+
+		<h2>Theme Variables</h2>
+		<br><br>
+		
+
+		<div class="col-xs-5">
+			<h3>Drop a "config.json" or "variables.less" file above</h3>
+		
+			<div id="drop_zone" class="col-xs-8 col-xs-offset-2 col-xs-push-2">
+				Drop here !
+			</div>
+		</div>
+
+
+
+		<div class="col-xs-2">
+			<br><br><br><br>
+			<h4>or</h4>
+		</div>
+
+
+
+		<div class="col-xs-5">
+			<h3>Edit each section manually here</h3>
+			
+			<div role="group">
+				<select ng-model="selectedCat">
+					<option value="colors">Colors</option>
+					<option value="scaffolding">Scaffolding</option>
+					<option value="typography">Typography</option>
+					<option value="iconography">Iconography</option>
+					<option value="components">Components</option>
+					<option value="tables">Tables</option>
+					<option value="options">options</option>
+					<option value="forms">Forms</option>
+					<option value="dropdowns">Dropdowns</option>
+					<!-- <option value="media-queries-breakpoints">Media queries breakpoints</option> -->
+					<!-- <option value="grid-system">Grid system</option> -->
+					<option value="container sizes">Container sizes</option>
+					<option value="navbar">Navbar</option>
+					<option value="navs">Navs</option>
+					<option value="tabs">Tabs</option>
+					<option value="pills">Pills</option>
+					<option value="pagination">Pagination</option>
+					<option value="pager">Pager</option>
+					<option value="jumbotron">Jumbotron</option>
+					<option value="form-states-and-alerts">Form states and alerts</option>
+					<option value="tooltips">Tooltips</option>
+					<!-- <option value="popovers">Popovers</option> -->
+					<option value="labels">Labels</option>
+					<option value="modals">Modals</option>
+					<option value="alerts">Alerts</option>
+					<option value="progress bars">Progress bars</option>
+					<option value="optionst group">optionst group</option>
+					<option value="panels">Panels</option>
+					<option value="thumbnails">Thumbnails</option>
+					<option value="wells">Wells</option>
+					<option value="badges">Badges</option>
+					<option value="breadcrumbs">Breadcrumbs</option>
+					<option value="carousel">Carousel</option>
+					<option value="close">Close</option>
+					<option value="code">Code</option>
+					<option value="type">Type</option>
+				</select>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+
+
+
+		<section ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
+
+
+		<br>
+
+		<div class="row">
+
+			<button class="btn btn-primary" ng-click="loadBasicVars()">RESET</button>
+			<button class="btn btn-primary" ng-click="generateTheme()" data-toggle="modal" data-target="#resultedCssModal">GENERATE</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="resultedCssModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title" id="myModalLabel">Resulted CSS</h4>
+						</div>
+
+						<div class="modal-body">
+							{{resultedCss}}
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

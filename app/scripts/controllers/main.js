@@ -11,6 +11,33 @@ angular.module('themeBuilderApp')
 	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings) {
 
 
+		$scope.themeDetails = {
+			"name": "My Theme",
+			"author": "Grumpy Cat",
+			"repository":{
+				"type":"git",
+				"url":"Repo Url"
+			},
+			"copyright":"GNU GPL v3, AGPL v3, Commercial",
+			"license":"MIT",
+			"engines":{
+				"wakanda":">=11"
+			},
+			"studio":{
+				"label":"Wakanda Corporate",
+				"mobile":"false"
+			},
+			"version":"1.0.0",
+			"loadDependencies":[
+				{
+					"id":"wakanda_corporate/wakanda_corporate.css",
+					"path":"THEMES_CUSTOM"
+				}
+			],
+			"hash":"91038c8630d0ca29ba43354e7b3a79322720d3d7"
+		};
+
+
 		// ------------------------------------------------------------------------------
 		// > Load basics less vars from config.json (in styles/bootstrap folder)
 		// ------------------------------------------------------------------------------
