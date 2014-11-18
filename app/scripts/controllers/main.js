@@ -8,7 +8,7 @@
  * Controller of the themeBuilderApp
  */
 angular.module('themeBuilderApp')
-	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings) {
+	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings, $location) {
 
 
 		$scope.themeDetails = {
@@ -158,22 +158,35 @@ angular.module('themeBuilderApp')
 		// ------------------------------------------------------------------------------
 		$scope.generateTheme = function(){
 			
-			$scope.resultedCss = document.getElementById('less:styles-bootstrap-bootstrap').innerHTML;
 
-			var zip = new JSZip();
+			console.log( $location.path() );
 
-			var folder = zip.folder($scope.secureName);
+			var lessToCssId = $location.path();
 
-			folder.file( 'package.json', angular.toJson( $scope.themeDetails ) ); // package.json
-			folder.file( $scope.secureName +'.css', $scope.resultedCss ); // package.json
+			// if root
+			if(lessToCssId === '/'){
+				lessToCssId = '';
+			} 
+			// if subfolder
+			else{
+				lessToCssId = lessToCssId.replace('/', '-');
+			}
 
-			// var img = zip.folder('images');
-			// img.file('smile.gif', imgData, {base64: true});
+			$scope.resultedCss = document.getElementById('less:'+ lessToCssId +'styles-bootstrap-bootstrap').innerHTML;
 
-			var content = zip.generate({type: 'blob'});
+			console.log($scope.resultedCss);
 
-			// FileSaver.js
-			saveAs( content, $scope.secureName+'.zip' );
+			// var zip = new JSZip();
+
+			// var folder = zip.folder($scope.secureName);
+
+			// folder.file( 'package.json', angular.toJson( $scope.themeDetails ) ); // package.json
+			// folder.file( $scope.secureName +'.css', $scope.resultedCss ); // package.json
+
+			// var content = zip.generate({type: 'blob'});
+
+			// // // FileSaver.js
+			// saveAs( content, $scope.secureName+'.zip' );
 
 		};
 
