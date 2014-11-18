@@ -8,14 +8,16 @@
  * Controller of the themeBuilderApp
  */
 angular.module('themeBuilderApp')
-	.controller('MainCtrl', function ($scope) {
+	.controller('MainCtrl', function ($scope, $timeout) {
 
 
 
 		$scope.lessVars = '';
 
 		$scope.refresh = function(){
-			less.modifyVars( $scope.lessVars );
+			$timeout(function() {
+				less.modifyVars( $scope.lessVars );
+			}, 1000);
 		};
 
 
@@ -71,8 +73,12 @@ angular.module('themeBuilderApp')
 
 								// var name
 								var lessVar = newVal.split(':')[0];
+
 								// var var value
-								var lessVarValue = newVal.split(':')[1].replace(/^\s+/, '').replace(';', '');
+								// var lessVarValue = newVal.split(':')[1].replace(/^\s+/, '').replace(';', '');
+								var lessVarValue = newVal.split(':')[1];
+								lessVarValue = lessVarValue.replace(/^\s+/, '');
+								lessVarValue = lessVarValue.split(';')[0];
 
 								lessVars[lessVar] = lessVarValue;
 								// less.modifyVars( {lessVar: lessVarValue} );
@@ -82,10 +88,11 @@ angular.module('themeBuilderApp')
 						$scope.lessVars = lessVars;
 						$scope.$apply();
 						console.log( lessVars );
+
 					}
 
 					// Modify vars and apply changes
-					less.modifyVars( $scope.lessVars );
+					$scope.refresh();
 
 					console.log($scope.lessVars);
 				};

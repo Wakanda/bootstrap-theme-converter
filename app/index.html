@@ -18,9 +18,9 @@
 			body{
 				padding: 5rem;
 			}
-			/*.less-error-message{
+			.less-error-message{
 				display: none;
-			}*/
+			}
 		</style>
 	</head>
 	<body ng-app="themeBuilderApp">
@@ -29,13 +29,14 @@
 		<![endif]-->
 
 		<!-- Add your site or application content here -->
-		<div class="container">
+		<div class="container-fluid">
 			<h3 class="text-muted">Wakanda Theme Builder</h3>
 
 			<div ng-view=""></div>
 
-		</div>
+			<div id="preview" ng-include="'views/preview.html'"></div>
 
+		</div>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 		 <script>
