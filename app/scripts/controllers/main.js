@@ -163,7 +163,7 @@ angular.module('themeBuilderApp')
 			$scope.resultedCss = document.getElementById('less:'+ lessToCssID +'styles-bootstrap-bootstrap').innerHTML;
 			console.log($scope.resultedCss);
 
-			if(studio){
+			if(studio != undefined){
 
 				studio.extension.storage.setItem('themeName', $scope.secureName);
 				studio.extension.storage.setItem('themeJson', angular.toJson( $scope.themeDetails ));
