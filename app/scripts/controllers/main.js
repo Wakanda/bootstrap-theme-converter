@@ -163,17 +163,27 @@ angular.module('themeBuilderApp')
 			$scope.resultedCss = document.getElementById('less:'+ lessToCssID +'styles-bootstrap-bootstrap').innerHTML;
 			console.log($scope.resultedCss);
 
-			var zip = new JSZip();
+			if(studio){
 
-			var folder = zip.folder($scope.secureName);
+				studio.extension.storage.setItem('themeName', $scope.secureName);
+				studio.extension.storage.setItem('themeJson', angular.toJson( $scope.themeDetails ));
+				studio.extension.storage.setItem('themeCss', $scope.resultedCss);
+				studio.sendCommand('ThemeBuilder.exportTheme');
 
-			folder.file( 'package.json', angular.toJson( $scope.themeDetails ) ); // package.json
-			folder.file( $scope.secureName +'.css', $scope.resultedCss ); // package.json
+			} else{
 
-			var content = zip.generate({type: 'blob'});
+				var zip = new JSZip();
+				var folder = zip.folder($scope.secureName);
 
-			// FileSaver.js
-			saveAs( content, $scope.secureName+'.zip' );
+				folder.file( 'package.json', angular.toJson( $scope.themeDetails ) ); // package.json
+				folder.file( $scope.secureName +'.css', $scope.resultedCss ); // package.json
+
+				var content = zip.generate({type: 'blob'});
+
+				// FileSaver.js
+				saveAs( content, $scope.secureName+'.zip' );
+			}
+			
 
 		};
 

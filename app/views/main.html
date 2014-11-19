@@ -68,12 +68,10 @@
 					<option value="iconography">Iconography</option>
 					<option value="components">Components</option>
 					<option value="tables">Tables</option>
-					<option value="options">options</option>
+					<option value="buttons">Buttons</option>
 					<option value="forms">Forms</option>
 					<option value="dropdowns">Dropdowns</option>
-					<!-- <option value="media-queries-breakpoints">Media queries breakpoints</option> -->
-					<!-- <option value="grid-system">Grid system</option> -->
-					<option value="container sizes">Container sizes</option>
+					<option value="container-sizes">Container sizes</option>
 					<option value="navbar">Navbar</option>
 					<option value="navs">Navs</option>
 					<option value="tabs">Tabs</option>
@@ -83,12 +81,12 @@
 					<option value="jumbotron">Jumbotron</option>
 					<option value="form-states-and-alerts">Form states and alerts</option>
 					<option value="tooltips">Tooltips</option>
-					<!-- <option value="popovers">Popovers</option> -->
+					<option value="popovers">Popovers</option>
 					<option value="labels">Labels</option>
 					<option value="modals">Modals</option>
 					<option value="alerts">Alerts</option>
-					<option value="progress bars">Progress bars</option>
-					<option value="optionst group">optionst group</option>
+					<option value="progress-bars">Progress bars</option>
+					<option value="list-group">optionst group</option>
 					<option value="panels">Panels</option>
 					<option value="thumbnails">Thumbnails</option>
 					<option value="wells">Wells</option>
@@ -109,27 +107,8 @@
 	<div class="col-xs-12 less-buttons">
 
 		<div class="btn-group">
-			<button class="btn btn-primary btn-lg" ng-click="generateTheme()" data-toggle="modal" data-target="#resultedCssModal">GENERATE</button>
+			<button class="btn btn-primary btn-lg" ng-click="generateTheme()">GENERATE</button>
 			<button class="btn btn-danger btn-lg" ng-click="loadBasicVars()">RESET</button>
-		</div>
-
-
-		<!-- Modal -->
-		<div class="modal fade" id="resultedCssModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="myModalLabel">Resulted CSS</h4>
-					</div>
-
-					<div class="modal-body">
-						{{resultedCss}}
-					</div>
-
-				</div>
-			</div>
 		</div>
 
 	</div>
@@ -137,5 +116,5 @@
 
 </div>
 
-<div id="preview" class="test" ng-include="'views/preview.html'"></div>
+<!-- <div id="preview" class="test" ng-include="'views/preview.html'"></div> -->
 

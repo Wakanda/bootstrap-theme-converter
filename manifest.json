@@ -1,0 +1,25 @@
+{
+	"extension": {
+		"name": "ThemeBuilder",
+		"version": "1.0.0",
+		"description": "Build a Wakanda Custom Theme within a minute !",
+		"icon": "icon.png",
+		"senders": [
+			{
+				"location": "studioToolbar", 
+				"actionName": "initBuilder"
+			}
+		],
+		"actions": [
+			{
+				"name": "initBuilder",
+				"title": "Theme Builder"
+			},
+			{
+				"name": "exportTheme",
+				"title": "Export you theme to Wakanda"
+			}
+		],
+		"lifetime": "action_lifetime"
+	}
+}
