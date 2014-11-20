@@ -20,6 +20,6 @@
 				"title": "Export you theme to Wakanda"
 			}
 		],
-		"lifetime": "action_lifetime"
+		"lifetime": "application_lifetime"
 	}
 }

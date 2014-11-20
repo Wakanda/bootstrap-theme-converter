@@ -129,7 +129,10 @@
 		<script src="bower_components/json3/lib/json3.js"></script>
 		<![endif]-->
 		<!-- endbuild -->
-		
+
+		<script src="bower_components/es5-shim/es5-shim.js"></script>
+		<script src="bower_components/json3/lib/json3.js"></script>
+
 		<script>
 			less = {
 				env: "development",
@@ -151,11 +154,13 @@
 				
 
 		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="http://adodson.com/dropfile/dropfile.js"></script>
+
+		<script src="../index.js"></script>
 
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
 		<script src="scripts/app.js"></script>
 		<script src="scripts/controllers/main.js"></script>
-		<script src="scripts/controllers/about.js"></script>
 		<script src="scripts/services/bootstrapsettings.js"></script>
 		<!-- endbuild -->
 </body>

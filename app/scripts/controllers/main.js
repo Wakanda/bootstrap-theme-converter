@@ -8,7 +8,7 @@
  * Controller of the themeBuilderApp
  */
 angular.module('themeBuilderApp')
-	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings) {
+	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings, $window) {
 
 
 		$scope.themeDetails = {
@@ -92,6 +92,10 @@ angular.module('themeBuilderApp')
 
 			var file = evt.dataTransfer.files[0]; // FileList object.
 
+			
+			console.log(evt.dataTransfer.files);
+			console.log(studio.File(file.fileName));
+
 			if (file) {
 				var reader = new FileReader();
 				reader.readAsText(file, 'UTF-8');
@@ -158,19 +162,36 @@ angular.module('themeBuilderApp')
 		// ------------------------------------------------------------------------------
 		$scope.generateTheme = function(){
 			
-			var lessToCssID = window.location.pathname.substring(1).replace('/', '-'); // absolute file path
+			var lessToCssID = '';
 
-			$scope.resultedCss = document.getElementById('less:'+ lessToCssID +'styles-bootstrap-bootstrap').innerHTML;
+			// if in browser
+			// ------------------------------------------------------------------------------
+			if( angular.isUndefined( $window.studio ) ){
+				lessToCssID = window.location.pathname.substring(1).replace('/', '-'); // absolute file path
+			}
+
+			//if in studio
+			// ------------------------------------------------------------------------------
+			else if( angular.isDefined( $window.studio ) ){
+
+				studio.extension.getFolder().path.split('/').forEach(function(value, key){
+					if(value !== '' && key !== 1){
+						lessToCssID += value +'-';
+					}
+				});
+				lessToCssID += 'dist-';
+			}
+
+			lessToCssID = 'less:'+ lessToCssID +'styles-bootstrap-bootstrap';
+			console.log(lessToCssID);
+
+			$scope.resultedCss = document.getElementById(lessToCssID).innerHTML;
 			console.log($scope.resultedCss);
 
-			if( angular.isDefined(studio) ){
 
-				studio.extension.storage.setItem('themeName', $scope.secureName);
-				studio.extension.storage.setItem('themeJson', angular.toJson( $scope.themeDetails ));
-				studio.extension.storage.setItem('themeCss', $scope.resultedCss);
-				studio.sendCommand('ThemeBuilder.exportTheme');
-
-			} else{
+			// if in browser
+			// ------------------------------------------------------------------------------
+			if( angular.isUndefined( $window.studio ) ){
 
 				var zip = new JSZip();
 				var folder = zip.folder($scope.secureName);
@@ -182,6 +203,18 @@ angular.module('themeBuilderApp')
 
 				// FileSaver.js
 				saveAs( content, $scope.secureName+'.zip' );
+
+			}
+
+			// if in studio
+			// ------------------------------------------------------------------------------
+			else if( angular.isDefined( $window.studio ) ){
+
+				studio.extension.storage.setItem('themeName', $scope.secureName.toString() );
+				studio.extension.storage.setItem('themeJson', angular.toJson($scope.themeDetails).toString() );
+				studio.extension.storage.setItem('themeCss', $scope.resultedCss.toString() );
+
+				studio.sendCommand('ThemeBuilder.exportTheme');
 			}
 			
 
@@ -189,16 +222,3 @@ angular.module('themeBuilderApp')
 
 
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-

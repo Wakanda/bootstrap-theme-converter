@@ -39,9 +39,9 @@ actions.initBuilder = function initBuilder() {
 actions.exportTheme = function exportTheme() {
 	"use strict";
 	
-	var themeName = studio.extension.storage.getItem('themeName');
-	var themeJson = studio.extension.storage.getItem('themeJson');
-	var themeCss = studio.extension.storage.getItem('themeCss');
+	var themeName = studio.extension.storage.getItem('themeName').toString();
+	var themeJson = studio.extension.storage.getItem('themeJson').toString();
+	var themeCss = studio.extension.storage.getItem('themeCss').toString();
 
 
 	// get export path (global theme folder or project theme folder)
@@ -54,21 +54,21 @@ actions.exportTheme = function exportTheme() {
 	if( !destThemeFolder.exists ){
 
 		// create theme main folder
-		var myFolder = new Folder( dest.path + themeName ).create(); 
+		var myFolder = new Folder( dest.path +'/'+ themeName ).create(); 
 		
 		// create json file
-		new File(dest.path +'my_theme/package.json').create(); 
+		new File(dest.path + themeName +'/package.json').create(); 
 
 		// fill json
-		var mystream = new TextStream(dest.path +'my_theme/package.json', 'write');
+		var mystream = new TextStream(dest.path + themeName +'/package.json', 'write');
 		mystream.write( themeJson );
 		mystream.close();
 
 		// create css
-		new File(dest.path +'my_theme/my_theme.css').create(); // create css file
+		new File(dest.path + themeName +'/'+ themeName +'.css').create(); // create css file
 
 		// fill css
-		var mystream = new TextStream(dest.path +'my_theme/my_theme.css', 'write');
+		var mystream = new TextStream(dest.path + themeName +'/'+ themeName +'.css', 'write');
 		mystream.write( themeCss );
 		mystream.close();
 	}
@@ -84,13 +84,11 @@ actions.exportTheme = function exportTheme() {
 function getThemesRootFolder() {
 
 	if (studio.extension.storage.getItem('projectpath') && studio.extension.storage.getItem('projectpath') != 'Favorites') {
-		return rootAddonsFolder = Folder(studio.extension.storage.getItem('projectpath') + 'Themes/');
+		return Folder(studio.extension.storage.getItem('projectpath') + 'Themes/');
 	} else {
-		return rootAddonsFolder = FileSystemSync('THEMES_CUSTOM');
+		return FileSystemSync('THEMES_CUSTOM');
 	}
 }
-
-
 
 
 exports.handleMessage = function handleMessage(message) {
