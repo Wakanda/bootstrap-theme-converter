@@ -18,6 +18,10 @@
 			{
 				"name": "exportTheme",
 				"title": "Export you theme to Wakanda"
+			},
+			{
+				"name": "selectFile",
+				"title": "Select a file"
 			}
 		],
 		"lifetime": "application_lifetime"

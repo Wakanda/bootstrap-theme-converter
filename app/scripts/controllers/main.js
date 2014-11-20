@@ -36,6 +36,13 @@ angular.module('themeBuilderApp')
 			]
 		};
 
+		// Studio or browser ?
+		if( angular.isDefined( $window.studio ) ){
+			$scope.studio = true;
+		} else{
+			$scope.studio = false;
+		}
+
 
 		$scope.updateInfos = function(){
 			
@@ -70,9 +77,72 @@ angular.module('themeBuilderApp')
 			}, 1000);
 		};
 
+		// ------------------------------------------------------------------------------
+		// > Cutting JSON & LESS
+		// ------------------------------------------------------------------------------
+		function getVarsFromJson(file){
+
+			var lessVars = {};
+			lessVars = angular.fromJson( file );
+
+			return lessVars.vars;
+		}
+
+		function getVarsFromLess(file){
+			
+			var lessVars = {};
+				
+			// get each line in an array
+			var content = file.toString().split('\n');
+
+			// for each line
+			angular.forEach(content, function(newVal){
+
+				// if begin with an @ create json tree
+				if(newVal[0] === '@'){
+
+					// var name
+					var lessVar = newVal.split(':')[0];
+
+					var lessVarValue = newVal.split(':')[1]; // get the var
+					lessVarValue = lessVarValue.replace(/^\s+/, ''); // delete unwanted spaces before var value
+					lessVarValue = lessVarValue.split(';')[0]; // detele unwanted characters after the var value
+
+					lessVars[lessVar] = lessVarValue; // add var/value to parent object
+				}
+			});
+
+			return lessVars;
+		}
+
+
 
 		// ------------------------------------------------------------------------------
-		// > DRAG & DROP CONFIG FILE
+		// > SELECT A FILE (studio only)
+		// ------------------------------------------------------------------------------
+		$scope.selectFile = function(type){
+
+			studio.extension.storage.setItem('fileType', type)
+			studio.sendCommand('ThemeBuilder.selectFile');
+
+			console.log( studio.extension.storage.getItem('selectedFile') );
+
+			if(studio.extension.storage.getItem('selectedFile') !== 'error'){
+
+				if(type === 'json'){
+					$scope.lessVars = getVarsFromJson( studio.extension.storage.getItem('selectedFile') );
+				}
+				if(type === 'less'){
+					$scope.lessVars = getVarsFromLess( studio.extension.storage.getItem('selectedFile') );
+				}
+			}
+			
+			console.log( $scope.lessVars );
+			$scope.refresh();
+		};
+
+		// ------------------------------------------------------------------------------
+		// > DRAG & DROP CONFIG FILE (browser only)
 		// ------------------------------------------------------------------------------
 		
 		// Setup the dnd listeners.
@@ -92,10 +162,6 @@ angular.module('themeBuilderApp')
 
 			var file = evt.dataTransfer.files[0]; // FileList object.
 
-			
-			console.log(evt.dataTransfer.files);
-			console.log(studio.File(file.fileName));
-
 			if (file) {
 				var reader = new FileReader();
 				reader.readAsText(file, 'UTF-8');
@@ -106,40 +172,19 @@ angular.module('themeBuilderApp')
 					// if file is 'config.json'
 					if( file.name.split('.').pop() === 'json'){
 						
-						lessVars = angular.fromJson( evt.target.result );
+						// lessVars = angular.fromJson( evt.target.result );
 
-						$scope.lessVars = lessVars.vars;
+						$scope.lessVars = getVarsFromJson( evt.target.result );
 						$scope.$apply();
 						console.log(lessVars.vars);
 					}
 
 					// if file is 'variables.less'
 					else if(file.name.split('.').pop() === 'less'){
-						
-						// get each line in an array
-						var content = evt.target.result.toString().split('\n');
 
-						// for each line
-						angular.forEach(content, function(newVal){
-
-							// if begin with an @ create json tree
-							if(newVal[0] === '@'){
-
-								// var name
-								var lessVar = newVal.split(':')[0];
-
-								var lessVarValue = newVal.split(':')[1]; // get the var
-								lessVarValue = lessVarValue.replace(/^\s+/, ''); // delete unwanted spaces before var value
-								lessVarValue = lessVarValue.split(';')[0]; // detele unwanted characters after the var value
-
-								lessVars[lessVar] = lessVarValue; // add var/value to parent object
-							}
-						});
-
-						$scope.lessVars = lessVars;
+						$scope.lessVars = getVarsFromLess(evt.target.result);
 						$scope.$apply();
 						console.log( lessVars );
-
 					}
 
 					// Modify vars and apply changes

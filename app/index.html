@@ -151,21 +151,32 @@
 				
 			</div>
 
-			<div class="col-xs-6">
+			<div class="col-xs-6 select-var-cat">
 
 				<h2>Theme Variables</h2>
 				<br>
 				
+				<!-- Studio only -->
+				<div ng-show="studio">
+					<h3>Load Variables from </h3>
+					<div class="btn-group">
+						<button ng-click="selectFile('json')" class="btn btn-default">'config.json' file</button>
+						<button ng-click="selectFile('less')" class="btn btn-default">'variables.less' file</button>
+					</div>
+				</div>
 
-				<div class="col-xs-12">		
+				<!-- Browser only -->
+				<div class="col-xs-12" ng-hide="studio">		
 					<div id="drop_zone">
 						Drop a "config.json" or "variables.less" file
 					</div>
 				</div>
+				
+				<br>
+				<h2 style="text-align: center">Or</h2>
 
-
-				<div class="col-xs-12 select-var-cat">
-					<h3>Or edit each section manually here</h3>
+				<div class="col-xs-12">
+					<h3>Edit variables manually by choosing categories here</h3>
 					
 					<div role="group">
 						<select ng-model="selectedCat">

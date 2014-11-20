@@ -38,6 +38,31 @@ actions.initBuilder = function initBuilder() {
 };
 
 // ------------------------------------------------------------------------------
+// > CHOOSE FILE
+// ------------------------------------------------------------------------------
+
+actions.selectFile = function selectFile() {
+	'use strict';
+
+	var type = studio.extension.storage.getItem('fileType');
+
+	var selectedFile = studio.fileSelectDialog(type);
+
+	if( selectedFile !== null ){
+		var mystream = new TextStream(selectedFile.path, 'read');
+		var selectedFileContent = mystream.read();
+		mystream.close();
+	
+		studio.extension.storage.setItem('selectedFile', selectedFileContent);
+	}
+	else{
+		studio.extension.storage.setItem('selectedFile', 'error');
+	}
+	
+	return true;
+};
+
+// ------------------------------------------------------------------------------
 // > EXPORT THEME
 // ------------------------------------------------------------------------------
 actions.exportTheme = function exportTheme() {
