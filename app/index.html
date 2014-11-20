@@ -104,9 +104,126 @@
 				<p>Theme Builder</p>
 			</div>
 		</header>
-		
 
-		<div ng-view=""></div>
+
+		<div class="row" ng-controller="MainCtrl">
+
+			<div class="col-xs-6">
+				
+				<h2>Theme Details</h2><br>
+
+				<div class="col-xs-12">
+					<div class="input-group">
+						<label for="theme-name" class="input-group-addon">Theme name</label>
+						<input id="theme-name" type="text" ng-model="themeDetails.name" ng-change="updateInfos()" class="form-control">
+					</div>
+				</div>
+				<div class="clearfix"></div><br>
+				
+				<div class="col-xs-12 col-lg-6">
+					<div class="input-group">
+						<label for="theme-version" class="input-group-addon">Theme version</label>
+						<input id="theme-version" type="text" ng-model="themeDetails.version" ng-change="updateInfos()" class="form-control">
+					</div>
+				</div>	
+				<div class="col-xs-12 col-lg-6">
+					<div class="input-group">
+						<label for="theme-license" class="input-group-addon">Theme license</label>
+						<input id="theme-license" type="text" ng-model="themeDetails.license" ng-change="updateInfos()" class="form-control">
+					</div>
+				</div>
+				<div class="clearfix"></div><br>
+
+				<div class="col-xs-12">
+					<div class="input-group">
+						<label for="theme-author" class="input-group-addon">Author</label>
+						<input id="theme-author" type="text" ng-model="themeDetails.author" ng-change="updateInfos()" class="form-control">
+					</div>
+				</div>	
+				<div class="clearfix"></div><br>
+
+				<div class="col-xs-12">
+					<div class="input-group">
+						<label for="theme-repo" class="input-group-addon">Theme repository url</label>
+						<input id="theme-repo" type="text" ng-model="themeDetails.repository.url" ng-change="updateInfos()" class="form-control">
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="col-xs-6">
+
+				<h2>Theme Variables</h2>
+				<br>
+				
+
+				<div class="col-xs-12">		
+					<div id="drop_zone">
+						Drop a "config.json" or "variables.less" file
+					</div>
+				</div>
+
+
+				<div class="col-xs-12 select-var-cat">
+					<h3>Or edit each section manually here</h3>
+					
+					<div role="group">
+						<select ng-model="selectedCat">
+							<option value=""></option>
+							<option value="colors">Colors</option>
+							<option value="scaffolding">Scaffolding</option>
+							<option value="typography">Typography</option>
+							<option value="iconography">Iconography</option>
+							<option value="components">Components</option>
+							<option value="tables">Tables</option>
+							<option value="buttons">Buttons</option>
+							<option value="forms">Forms</option>
+							<option value="dropdowns">Dropdowns</option>
+							<option value="container-sizes">Container sizes</option>
+							<option value="navbar">Navbar</option>
+							<option value="navs">Navs</option>
+							<option value="tabs">Tabs</option>
+							<option value="pills">Pills</option>
+							<option value="pagination">Pagination</option>
+							<option value="pager">Pager</option>
+							<option value="jumbotron">Jumbotron</option>
+							<option value="form-states-and-alerts">Form states and alerts</option>
+							<option value="tooltips">Tooltips</option>
+							<option value="popovers">Popovers</option>
+							<option value="labels">Labels</option>
+							<option value="modals">Modals</option>
+							<option value="alerts">Alerts</option>
+							<option value="progress-bars">Progress bars</option>
+							<option value="list-group">optionst group</option>
+							<option value="panels">Panels</option>
+							<option value="thumbnails">Thumbnails</option>
+							<option value="wells">Wells</option>
+							<option value="badges">Badges</option>
+							<option value="breadcrumbs">Breadcrumbs</option>
+							<option value="carousel">Carousel</option>
+							<option value="close">Close</option>
+							<option value="code">Code</option>
+							<option value="type">Type</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+			
+			<section class="edit-vars col-xs-12" ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
+			
+			<div class="col-xs-12 less-buttons">
+
+				<div class="btn-group">
+					<button class="btn btn-primary btn-lg" ng-click="generateTheme()">GENERATE</button>
+					<button class="btn btn-danger btn-lg" ng-click="loadBasicVars()">RESET</button>
+				</div>
+
+			</div>
+
+
+		</div>
+
 
 
 
@@ -152,11 +269,8 @@
 		<!-- endbower -->
 		<!-- endbuild -->
 				
-
 		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-		<script src="http://adodson.com/dropfile/dropfile.js"></script>
-
-		<script src="../index.js"></script>
+		<!-- <script src="http://adodson.com/dropfile/dropfile.js"></script> -->
 
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
 		<script src="scripts/app.js"></script>

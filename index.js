@@ -24,18 +24,22 @@
 var	actions;
 actions = {};
 
+// ------------------------------------------------------------------------------
+// > LAUNCH THEME BUILDER
+// ------------------------------------------------------------------------------
 
-// LAUNCH THEME BUILDER
 actions.initBuilder = function initBuilder() {
 	'use strict';
 
-	studio.extension.registerTabPage('./dist/index.html', './img/rsz_logo-addon.png');
+	studio.extension.registerTabPage('./dist/index.html', './rsz_logo-addon.png');
 	studio.extension.openPageInTab('./dist/index.html', 'Theme Builder', false);
 	
 	return true;
 };
 
-// EXPORT THEME
+// ------------------------------------------------------------------------------
+// > EXPORT THEME
+// ------------------------------------------------------------------------------
 actions.exportTheme = function exportTheme() {
 	"use strict";
 	
@@ -71,19 +75,22 @@ actions.exportTheme = function exportTheme() {
 		var mystream = new TextStream(dest.path + themeName +'/'+ themeName +'.css', 'write');
 		mystream.write( themeCss );
 		mystream.close();
+
+		studio.alert('Well done ! Your brand new theme is now available and have been copied in your \'Wakanda/Themes/\' folder !');
 	}
 	// the folder already exist :'(
 	else{
 		studio.alert('You already have a directory with the same name :\'(');
 	}
 
-
 	return true;
 };
 
+// Get Global folder if no project opened, or get project theme folder
+// ------------------------------------------------------------------------------
 function getThemesRootFolder() {
 
-	if (studio.extension.storage.getItem('projectpath') && studio.extension.storage.getItem('projectpath') != 'Favorites') {
+	if ( studio.extension.storage.getItem('projectpath') ) {
 		return Folder(studio.extension.storage.getItem('projectpath') + 'Themes/');
 	} else {
 		return FileSystemSync('THEMES_CUSTOM');
@@ -91,6 +98,8 @@ function getThemesRootFolder() {
 }
 
 
+
+// ------------------------------------------------------------------------------
 exports.handleMessage = function handleMessage(message) {
 	"use strict";
 	var

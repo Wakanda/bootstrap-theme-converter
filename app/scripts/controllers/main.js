@@ -12,38 +12,38 @@ angular.module('themeBuilderApp')
 
 
 		$scope.themeDetails = {
-			'name': 'My Theme',
-			'author': 'Grumpy Cat',
-			'repository':{
-				'type':'git',
-				'url':'Repo Url'
+			name: 'My Theme',
+			author: 'Grumpy Cat',
+			repository:{
+				type:'git',
+				url:'Repo Url'
 			},
-			'copyright':'GNU GPL v3, AGPL v3, Commercial',
-			'license':'MIT',
-			'engines':{
-				'wakanda':'>=11'
+			copyright:'GNU GPL v3, AGPL v3, Commercial',
+			license:'MIT',
+			engines:{
+				wakanda:'>=11'
 			},
-			'studio':{
-				'label':'Wakanda Corporate',
-				'mobile':'false'
+			studio:{
+				label:'My Theme',
+				mobile:'false'
 			},
-			'version':'1.0.0',
-			'loadDependencies':[
+			version:'1.0.0',
+			loadDependencies:[
 				{
-					'id': '',
-					'path':'THEMES_CUSTOM'
+					id: '',
+					path:'THEMES_CUSTOM'
 				}
-			],
-			'hash':'91038c8630d0ca29ba43354e7b3a79322720d3d7'
+			]
 		};
 
 
-		$scope.$watch('themeDetails', function(newVal){
+		$scope.updateInfos = function(){
 			
-			$scope.secureName = newVal.name.toLowerCase().replace(/ /g, '_');
-
+			$scope.themeDetails.studio.label = $scope.themeDetails.name;
+			$scope.secureName = $scope.themeDetails.name.toLowerCase().replace(/ /g, '_');
 			$scope.themeDetails.loadDependencies[0].id = $scope.secureName +'/'+ $scope.secureName +'.css' ;
-		});
+		};
+		$scope.updateInfos();
 		
 
 
@@ -169,6 +169,8 @@ angular.module('themeBuilderApp')
 			if( angular.isUndefined( $window.studio ) ){
 				lessToCssID = window.location.pathname.substring(1).replace('/', '-'); // absolute file path
 			}
+			// ------------------------------------------------------------------------------
+
 
 			//if in studio
 			// ------------------------------------------------------------------------------
@@ -181,6 +183,8 @@ angular.module('themeBuilderApp')
 				});
 				lessToCssID += 'dist-';
 			}
+			// ------------------------------------------------------------------------------
+
 
 			lessToCssID = 'less:'+ lessToCssID +'styles-bootstrap-bootstrap';
 			console.log(lessToCssID);
@@ -203,7 +207,6 @@ angular.module('themeBuilderApp')
 
 				// FileSaver.js
 				saveAs( content, $scope.secureName+'.zip' );
-
 			}
 
 			// if in studio
