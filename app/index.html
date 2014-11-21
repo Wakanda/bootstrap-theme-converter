@@ -10,14 +10,15 @@
 		<!-- bower:css -->
 		<!-- endbower -->
 		<!-- endbuild -->
-
+		
+		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
 		<!-- build:css(.tmp) styles/main.css -->
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 
 		<link id="myLess" rel="stylesheet/less" type="text/css" href="styles/bootstrap/bootstrap.less">
 	</head>
-	<body ng-app="themeBuilderApp">
+	<body ng-app="themeBuilderApp" ng-controller="MainCtrl">
 
 	
 		<header class="site-header">
@@ -26,57 +27,54 @@
 				<h1>wakanda</h1>
 				<p>Theme Builder</p>
 			</div>
+			
 		</header>
 
+		<ul class="main-nav">
+			<li><a href="#" ng-click="tabNav = 'details'"><i class="ion-wrench"></i> Theme Details</a></li>
+			<li><a href="#" ng-click="tabNav = 'edit'"><i class="ion-edit"></i> Edit Theme Styles</a></li>
+		</ul>
 
-		<div class="row" ng-controller="MainCtrl">
+		<div class="details row" ng-show="tabNav === 'details'">
 
-			<div class="col-xs-6">
+			<div class="container-fluid inner">
 				
 				<h2>Theme Details</h2><br>
 
 				<div class="col-xs-12">
-					<div class="input-group">
-						<label for="theme-name" class="input-group-addon">Theme name</label>
-						<input id="theme-name" type="text" ng-model="themeDetails.name" ng-change="updateInfos()" class="form-control">
-					</div>
+					<label for="theme-name">Theme name</label>
+					<input id="theme-name" type="text" ng-model="themeDetails.name" ng-change="updateInfos()" class="form-control">
 				</div>
 				<div class="clearfix"></div><br>
 				
-				<div class="col-xs-12 col-lg-6">
-					<div class="input-group">
-						<label for="theme-version" class="input-group-addon">Theme version</label>
-						<input id="theme-version" type="text" ng-model="themeDetails.version" ng-change="updateInfos()" class="form-control">
-					</div>
+				<div class="col-xs-12 col-md-6">
+					<label for="theme-version">Theme version</label>
+					<input id="theme-version" type="text" ng-model="themeDetails.version" ng-change="updateInfos()" class="form-control">
 				</div>	
-				<div class="col-xs-12 col-lg-6">
-					<div class="input-group">
-						<label for="theme-license" class="input-group-addon">Theme license</label>
-						<input id="theme-license" type="text" ng-model="themeDetails.license" ng-change="updateInfos()" class="form-control">
-					</div>
+				<div class="col-xs-12 col-md-6">
+					<label for="theme-license">Theme license</label>
+					<input id="theme-license" type="text" ng-model="themeDetails.license" ng-change="updateInfos()" class="form-control">
 				</div>
 				<div class="clearfix"></div><br>
 
 				<div class="col-xs-12">
-					<div class="input-group">
-						<label for="theme-author" class="input-group-addon">Author</label>
-						<input id="theme-author" type="text" ng-model="themeDetails.author" ng-change="updateInfos()" class="form-control">
-					</div>
+					<label for="theme-author">Author</label>
+					<input id="theme-author" type="text" ng-model="themeDetails.author" ng-change="updateInfos()" class="form-control">
 				</div>	
 				<div class="clearfix"></div><br>
 
 				<div class="col-xs-12">
-					<div class="input-group">
-						<label for="theme-repo" class="input-group-addon">Theme repository url</label>
-						<input id="theme-repo" type="text" ng-model="themeDetails.repository.url" ng-change="updateInfos()" class="form-control">
-					</div>
+					<label for="theme-repo">Theme repository url</label>
+					<input id="theme-repo" type="text" ng-model="themeDetails.repository.url" ng-change="updateInfos()" class="form-control">
 				</div>
 				
 			</div>
+		</div>
 
-			<div class="col-xs-6 select-var-cat">
+		<div class="edit row" ng-show="tabNav === 'edit'">
+			<div class="container-fluid select-var-cat inner">
 
-				<h2>Theme Variables</h2>
+				<h2>Edit Theme Styles</h2>
 				<br>
 				
 				<!-- Studio only -->
@@ -141,23 +139,20 @@
 						</select>
 					</div>
 				</div>
-
-			</div>
+				<section class="edit-vars col-xs-12" ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
 			
-			<section class="edit-vars col-xs-12" ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
-			
-			<div class="col-xs-12 less-buttons">
-
-				<div class="btn-group">
-					<button class="btn btn-primary btn-lg" ng-click="generateTheme()">GENERATE</button>
-					<button class="btn btn-danger btn-lg" ng-click="loadBasicVars()">RESET</button>
-				</div>
-
 			</div>
-
-
 		</div>
+		
 
+
+
+		<footer class="less-buttons">
+			<div class="btn-group">
+				<button class="btn btn-primary" ng-click="generateTheme()">GENERATE</button>
+				<button class="btn btn-danger" ng-click="loadBasicVars()">RESET</button>
+			</div>
+		</footer>
 
 
 

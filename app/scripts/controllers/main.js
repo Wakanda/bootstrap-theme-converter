@@ -11,6 +11,8 @@ angular.module('themeBuilderApp')
 	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings, $window) {
 
 
+		$scope.tabNav = 'details';
+
 		$scope.themeDetails = {
 			name: 'My Theme',
 			author: 'Grumpy Cat',
