@@ -124,7 +124,7 @@ angular.module('themeBuilderApp')
 		// ------------------------------------------------------------------------------
 		$scope.selectFile = function(type){
 
-			studio.extension.storage.setItem('fileType', type)
+			studio.extension.storage.setItem('fileType', type);
 			studio.sendCommand('ThemeBuilder.selectFile');
 
 			console.log( studio.extension.storage.getItem('selectedFile') );
@@ -148,6 +148,7 @@ angular.module('themeBuilderApp')
 		// ------------------------------------------------------------------------------
 		
 		// Setup the dnd listeners.
+		// var dropZone = document.getElementById('drop_zone');
 		var dropZone = document.getElementById('drop_zone');
 	
 		// On drag over	
