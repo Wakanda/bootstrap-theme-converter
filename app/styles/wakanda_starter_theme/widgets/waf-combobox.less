@@ -1,0 +1,48 @@
+// ------------------------------------------------------------
+// > COMBOBOX
+// ------------------------------------------------------------
+
+.waf-combobox{
+	border: 1px solid @input-border;
+	.box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+	border-radius: @input-border-radius;
+
+	input{
+		-webkit-box-sizing: border-box;
+		float: left;
+		color: @input-color;
+		background-color: @input-bg;
+		background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+		
+		.transition(~"border-color ease-in-out .15s, box-shadow ease-in-out .15s");
+
+		// Customize the `:focus` state to imitate native WebKit styles.
+		.form-control-focus();
+
+		// Placeholder
+		.placeholder();
+
+		&[disabled],
+		&[readonly],
+		fieldset[disabled] & {
+			cursor: @cursor-disabled;
+			background-color: @input-bg-disabled;
+			opacity: 1; // iOS fix for unreadable disabled content
+		}
+
+		// Reset height for `textarea`s
+		textarea& {
+			height: auto;
+		}
+	}
+	button{
+		-webkit-box-sizing: border-box;
+		.btn;
+		.btn-default;
+		float: right;
+		border: none;
+		border-left: 1px solid @input-border;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}

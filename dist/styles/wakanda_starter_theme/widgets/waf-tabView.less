@@ -1,0 +1,175 @@
+// ------------------------------------------------------------
+// > TABVIEW
+// ------------------------------------------------------------
+
+// Variables
+
+// Tabs
+// ------------------------------------------------------------
+@tabView-header-bg: @panel-default-heading-bg;
+@tabView-header-border: @panel-default-border;
+
+// BODY
+// ------------------------------------------------------------
+@tabView-bg: @panel-bg;
+@tabView-border: @panel-default-border;
+@tabView-border-radius : @border-radius-base;
+
+.waf-tabView{
+	
+	// Reset container & menubar ----------
+	.waf-container{
+		border: none;
+		background-color: none;
+		border-radius: 0;
+	}
+	.waf-menuBar{
+		border: none;
+		background: none;
+		background-color: transparent;
+		border-radius: 0;
+	}
+	// ------------------------------------
+
+	.waf-tabView-menuBar li{
+		background-color: @gray-dark;
+		box-shadow: none;
+
+		&.waf-state-selected{
+			background-color: @tabView-bg;
+
+			&:after{
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				height: 3px;
+				width: 100%;
+				z-index: 9999;
+				background-color: red;
+			}
+		}
+	}
+
+	[class*="waf-tabView-container"]{
+		background-color: @tabView-bg;
+		box-shadow: none;
+		border: 1px solid @tabView-border;
+	}
+
+	// --------------------------------------------------------
+	// > Top left & right
+	// --------------------------------------------------------
+
+	// Tabs
+	&.waf-tabView-menu-position-top-left,
+	&.waf-tabView-menu-position-top-right{
+		
+		.waf-tabView-menuBar li{
+			border-radius: @tabView-border-radius @tabView-border-radius 0 0;
+			border: 1px solid @tabView-border;
+			border-bottom: 0;
+		}
+	}
+	// top-left container 
+	&.waf-tabView-menu-position-top-left{
+
+		[class*="waf-tabView-container"]{
+			border-radius: 0 @tabView-border-radius @tabView-border-radius @tabView-border-radius;
+		}
+	}
+	// top-right container
+	&.waf-tabView-menu-position-top-right{
+		
+		[class*="waf-tabView-container"]{
+			border-radius: @tabView-border-radius 0 @tabView-border-radius @tabView-border-radius;
+		}
+	}
+
+	// --------------------------------------------------------
+	// > Bottom left & right
+	// --------------------------------------------------------
+
+	// Tabs
+	&.waf-tabView-menu-position-bottom-left,
+	&.waf-tabView-menu-position-bottom-right{
+		
+		.waf-tabView-menuBar li{
+			border-radius: 0 0 @tabView-border-radius @tabView-border-radius;
+			border: 1px solid @tabView-border;
+			border-top: 0;
+		}
+	}
+	// bottom-left container 
+	&.waf-tabView-menu-position-bottom-left{
+
+		[class*="waf-tabView-container"]{
+			border-radius: @tabView-border-radius @tabView-border-radius @tabView-border-radius 0;
+		}
+	}
+	// bottom-right container
+	&.waf-tabView-menu-position-bottom-right{
+		
+		[class*="waf-tabView-container"]{
+			border-radius: @tabView-border-radius @tabView-border-radius 0 @tabView-border-radius;
+		}
+	}
+
+
+	// --------------------------------------------------------
+	// > Left top & bottom
+	// --------------------------------------------------------
+
+	// Tabs
+	&.waf-tabView-menu-position-left-top,
+	&.waf-tabView-menu-position-left-bottom{
+		
+		.waf-tabView-menuBar li{
+			border-radius: @tabView-border-radius 0 0 @tabView-border-radius;
+			border: 1px solid @tabView-border;
+			border-right: 0;
+		}
+	}
+	// left-top container 
+	&.waf-tabView-menu-position-left-top{
+
+		[class*="waf-tabView-container"]{
+			border-radius: 0 @tabView-border-radius @tabView-border-radius @tabView-border-radius;
+		}
+	}
+	// left-bottom container
+	&.waf-tabView-menu-position-left-bottom{
+		
+		[class*="waf-tabView-container"]{
+			border-radius: @tabView-border-radius @tabView-border-radius @tabView-border-radius 0;
+		}
+	}
+
+	// --------------------------------------------------------
+	// > Right top & bottom
+	// --------------------------------------------------------
+
+	// Tabs
+	&.waf-tabView-menu-position-right-top,
+	&.waf-tabView-menu-position-right-bottom{
+		
+		.waf-tabView-menuBar li{
+			border-radius: 0 @tabView-border-radius @tabView-border-radius 0;
+			border: 1px solid @tabView-border;
+			border-left: 0;
+		}
+	}
+	// right-top container
+	&.waf-tabView-menu-position-right-top{
+
+		[class*="waf-tabView-container"]{
+			border-radius: @tabView-border-radius 0 @tabView-border-radius @tabView-border-radius;
+		}
+	}
+	// right-bottom container
+	&.waf-tabView-menu-position-right-bottom{
+		
+		[class*="waf-tabView-container"]{
+			border-radius: @tabView-border-radius @tabView-border-radius 0 @tabView-border-radius;
+		}
+	}
+}

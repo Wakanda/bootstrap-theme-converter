@@ -1,0 +1,35 @@
+// ------------------------------------------------------------
+// > WYSIWYG
+// ------------------------------------------------------------
+
+.waf-wysiwyg{
+
+	border: 1px solid @panel-default-border;
+	.panel;
+	border-radius: @border-radius-base !important;
+	background-color: transparent;
+	padding-top: 1px;
+
+	.mceEditor{
+		border: none;
+	}
+	.mceToolbar{
+		border: 0;
+		margin-top: 1px;
+		border-top: 1px solid @panel-default-border;
+		background-color: @panel-default-heading-bg;
+		border-top-left-radius: @border-radius-base;
+		border-top-right-radius: @border-radius-base;
+
+		
+	}
+	.mceButton{
+		background: none;
+		background-color: transparent !important;
+		border: none !important;
+	}
+	.mceIframeContainer{
+		border-radius: @border-radius-base;
+		background-color: #fff;
+	}
+}

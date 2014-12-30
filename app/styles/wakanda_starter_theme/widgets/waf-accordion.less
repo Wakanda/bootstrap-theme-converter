@@ -1,0 +1,40 @@
+// ------------------------------------------------------------
+// > ACCORDION
+// ------------------------------------------------------------
+
+.waf-accordion{
+	min-height: 20px;
+	padding: 0;
+	margin-bottom: 0;
+	background-color: transparent;
+	box-shadow: none;
+	border-bottom: 1px solid @panel-default-border !important;
+	border-radius: @border-radius-base;
+
+	.waf-container{
+		border: none;
+		background-color: none;
+		border-radius: 0;
+		box-shadow: none;
+	}	
+	.accordion-section{
+		.waf-container{
+			border-left: 1px solid @panel-default-border;
+			border-right: 1px solid @panel-default-border;
+		}
+	}
+	.waf-accordion-header{
+		background-color: @panel-default-heading-bg;
+		border: 1px solid @panel-default-border !important;
+		border-bottom: 0 !important;
+	}
+	.waf-accordion-content{
+		background-color: @panel-bg;
+	}
+	.waf-state-expanded{
+		
+		.waf-accordion-header{
+			border-bottom: 1px solid @panel-default-border !important;
+		}
+	}
+}

@@ -1,0 +1,46 @@
+// ------------------------------------------------------------
+// > MENUBAR
+// ------------------------------------------------------------
+
+.waf-menuBar{
+	.navbar;
+	.navbar-default;
+	.nav; 
+	.navbar-nav;
+
+	.waf-menuItem{
+		min-height: 30px;
+		height: auto !important;
+
+		&:hover{
+			color: @navbar-default-link-hover-color;
+			background-color: @navbar-default-link-hover-bg;
+		}
+		
+		.waf-menuBar-vertical{
+			.dropdown-menu;
+			min-height: 1rem;
+			height: auto !important;
+			
+			.waf-menuItem{
+				width: auto !important;
+
+				&:hover{
+					color: @navbar-default-link-hover-color;
+					background-color: @navbar-default-link-hover-bg;
+				}
+			}
+			.waf-richText{
+				width: auto !important;
+				display: block;
+				padding: 3px 20px;
+				clear: both;
+				font-weight: 400;
+				line-height: 1.42857143;
+				color: @navbar-default-link-hover-color;
+				white-space: nowrap;
+				height: 100%;
+			}
+		}
+	}
+}

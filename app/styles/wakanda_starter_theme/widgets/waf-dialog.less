@@ -1,0 +1,48 @@
+// ------------------------------------------------------------
+// > DIALOG
+// ------------------------------------------------------------
+
+.waf-dialog{
+	padding: 0;
+	box-shadow: none !important;
+	background-color: @panel-bg;
+	border: 1px solid @panel-default-border;
+	
+	.waf-container{
+		border-radius: 0;
+	}
+	.waf-dialog-header{
+		box-shadow: none !important;
+		border: none !important;
+		border-bottom: 1px solid @panel-default-border !important;
+		background-color: @panel-default-heading-bg;
+		border-top-left-radius: @border-radius-base;
+		border-top-right-radius: @border-radius-base;
+		display: table;
+		vertical-align: middle;
+
+		button{
+			display: table-cell;
+			vertical-align: middle;
+			font-size: 10px !important;
+			line-height: 1;
+		}
+		.text{
+			margin-top: 0 !important;
+		}
+	}
+	.waf-dialog-body{
+		box-shadow: none !important;
+		border: none !important;
+		background-color: transparent;
+	}
+
+	.waf-dialog-footer{
+		box-shadow: none !important;
+		border: none !important;
+		border-top: 1px solid @panel-default-border !important;
+		background-color: @panel-footer-bg;
+		border-bottom-left-radius: @border-radius-base;
+		border-bottom-right-radius: @border-radius-base;
+	}
+}

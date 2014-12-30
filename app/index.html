@@ -16,70 +16,67 @@
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 
-		<link id="myLess" rel="stylesheet/less" type="text/css" href="styles/bootstrap/bootstrap.less">
+		<link id="myLess" rel="stylesheet/less" type="text/css" href="styles/wakanda_starter_theme/wakanda_starter_theme.less">
 	</head>
 	<body ng-app="themeBuilderApp" ng-controller="MainCtrl">
-
+	<div id="page">
 	
-		<header class="site-header">
-			<ul class="main-nav">
-				<li>
-					<img src="images/wakanda-themes.svg" alt="">
-					Theme Builder
-				</li>
-				<li>
-					<a href="#" ng-click="tabNav = 'details'"><i class="ion-wrench"></i> Theme Details</a>
-				</li>
-				<li>
-					<a href="#" ng-click="tabNav = 'edit'"><i class="ion-edit"></i> Edit Theme Styles</a>
-				</li>
-				<li class="generate-btn">
-					<button ng-click="generateTheme()">GENERATE</button>
-				</li>
-				<li class="reset-btn">
-					<button ng-click="loadBasicVars()">RESET</button>
-				</li>
-			</ul>
-		</header>
 
+		<!-- SIDE NAV -->
+		<ul class="main-nav">
+			<li>
+				<img src="images/wakanda-themes.svg" alt="">
+			</li>
+			<li>
+				Theme Builder
+			</li>
+			<li>
+				<a href="#" ng-click="tabNav = 'details'"><i class="ion-wrench"></i> Theme Details</a>
+			</li>
+			<li>
+				<a href="#" ng-click="tabNav = 'edit'"><i class="ion-edit"></i> Edit Theme Styles</a>
+			</li>
+			<li class="generate-btn">
+				<button ng-click="generateTheme()">GENERATE</button>
+			</li>
+			<li class="reset-btn">
+				<a ng-click="loadBasicVars()">RESET</a>
+			</li>
+		</ul>
 		
 
-		<div class="details row" ng-show="tabNav === 'details'">
+		<!-- CONTENT -->
+		<div class="content">
 
-			<div class="container-fluid inner">
-				
-				<h2>Theme Details</h2><br>
+			<div class="details" ng-show="tabNav === 'details'">
+					
+				<h1>Theme Details</h1><br>
 
-				<div class="col-xs-6">
-					<div class="col-xs-12">
+
+				<ul class="theme-infos">
+					<li>
 						<label for="theme-name">Theme name</label>
-						<input id="theme-name" type="text" ng-model="themeDetails.name" ng-change="updateInfos()" class="form-control">
-					</div>
-					<div class="clearfix"></div><br>
-					
-					<div class="col-xs-12 col-md-6">
+						<input id="theme-name" type="text" ng-model="themeDetails.name" ng-change="updateInfos()" class="input">
+					</li>
+					<li>
 						<label for="theme-version">Theme version</label>
-						<input id="theme-version" type="text" ng-model="themeDetails.version" ng-change="updateInfos()" class="form-control">
-					</div>	
-					<div class="col-xs-12 col-md-6">
+						<input id="theme-version" type="text" ng-model="themeDetails.version" ng-change="updateInfos()" class="input">
+					</li>
+					<li>
 						<label for="theme-license">Theme license</label>
-						<input id="theme-license" type="text" ng-model="themeDetails.license" ng-change="updateInfos()" class="form-control">
-					</div>
-					<div class="clearfix"></div><br>
-					
-					<div class="col-xs-12">
+						<input id="theme-license" type="text" ng-model="themeDetails.license" ng-change="updateInfos()" class="input">
+					</li>
+					<li>
 						<label for="theme-author">Author</label>
-						<input id="theme-author" type="text" ng-model="themeDetails.author" ng-change="updateInfos()" class="form-control">
-					</div>	
-					<div class="clearfix"></div><br>
-					
-					<div class="col-xs-12">
+						<input id="theme-author" type="text" ng-model="themeDetails.author" ng-change="updateInfos()" class="input">
+					</li>
+					<li>
 						<label for="theme-repo">Theme repository url</label>
-						<input id="theme-repo" type="text" ng-model="themeDetails.repository.url" ng-change="updateInfos()" class="form-control">
-					</div>
-				</div>
+						<input id="theme-repo" type="text" ng-model="themeDetails.repository.url" ng-change="updateInfos()" class="input">
+					</li>
+				</ul>
 
-				<div class="col-xs-6">
+				<div class="import">
 
 					<!-- Studio only -->
 					<div class="btn-load" ng-show="studio">
@@ -92,7 +89,7 @@
 					</div>
 					
 					<!-- Browser only -->
-					<div class="col-xs-12" ng-hide="studio">
+					<div ng-hide="studio">
 						<h3>Load Variables from a config.json or variables.less file</h3><br>
 						<div id="drop_zone">
 							<i class="ion-upload"></i><br>
@@ -100,65 +97,64 @@
 						</div>
 					</div>
 				</div>
+
+			</div>
+
+
+
+
+
+			<div class="edit" ng-show="tabNav === 'edit'">
+
+				<h1>Edit Theme Styles</h1>
+				<h3>Edit variables manually by choosing categories here</h3>
+				
+				<div role="group">
+					<select ng-model="selectedCat">
+						<option value=""></option>
+						<option value="colors">Colors</option>
+						<option value="scaffolding">Scaffolding</option>
+						<option value="typography">Typography</option>
+						<option value="iconography">Iconography</option>
+						<option value="components">Components</option>
+						<option value="tables">Tables</option>
+						<option value="buttons">Buttons</option>
+						<option value="forms">Forms</option>
+						<option value="dropdowns">Dropdowns</option>
+						<option value="container-sizes">Container sizes</option>
+						<option value="navbar">Navbar</option>
+						<option value="navs">Navs</option>
+						<option value="tabs">Tabs</option>
+						<option value="pills">Pills</option>
+						<option value="pagination">Pagination</option>
+						<option value="pager">Pager</option>
+						<option value="jumbotron">Jumbotron</option>
+						<option value="form-states-and-alerts">Form states and alerts</option>
+						<option value="tooltips">Tooltips</option>
+						<option value="popovers">Popovers</option>
+						<option value="labels">Labels</option>
+						<option value="modals">Modals</option>
+						<option value="alerts">Alerts</option>
+						<option value="progress-bars">Progress bars</option>
+						<option value="list-group">optionst group</option>
+						<option value="panels">Panels</option>
+						<option value="thumbnails">Thumbnails</option>
+						<option value="wells">Wells</option>
+						<option value="badges">Badges</option>
+						<option value="breadcrumbs">Breadcrumbs</option>
+						<option value="carousel">Carousel</option>
+						<option value="close">Close</option>
+						<option value="code">Code</option>
+						<option value="type">Type</option>
+					</select>
+				</div>
+				<section class="edit-vars" ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
 				
 			</div>
-		</div>
-
-		<div class="edit row" ng-show="tabNav === 'edit'">
-			<div class="container-fluid select-var-cat inner">
-
-				<h2>Edit Theme Styles</h2>
-
-				<div class="col-xs-12">
-					<h3>Edit variables manually by choosing categories here</h3>
-					
-					<div role="group">
-						<select ng-model="selectedCat">
-							<option value=""></option>
-							<option value="colors">Colors</option>
-							<option value="scaffolding">Scaffolding</option>
-							<option value="typography">Typography</option>
-							<option value="iconography">Iconography</option>
-							<option value="components">Components</option>
-							<option value="tables">Tables</option>
-							<option value="buttons">Buttons</option>
-							<option value="forms">Forms</option>
-							<option value="dropdowns">Dropdowns</option>
-							<option value="container-sizes">Container sizes</option>
-							<option value="navbar">Navbar</option>
-							<option value="navs">Navs</option>
-							<option value="tabs">Tabs</option>
-							<option value="pills">Pills</option>
-							<option value="pagination">Pagination</option>
-							<option value="pager">Pager</option>
-							<option value="jumbotron">Jumbotron</option>
-							<option value="form-states-and-alerts">Form states and alerts</option>
-							<option value="tooltips">Tooltips</option>
-							<option value="popovers">Popovers</option>
-							<option value="labels">Labels</option>
-							<option value="modals">Modals</option>
-							<option value="alerts">Alerts</option>
-							<option value="progress-bars">Progress bars</option>
-							<option value="list-group">optionst group</option>
-							<option value="panels">Panels</option>
-							<option value="thumbnails">Thumbnails</option>
-							<option value="wells">Wells</option>
-							<option value="badges">Badges</option>
-							<option value="breadcrumbs">Breadcrumbs</option>
-							<option value="carousel">Carousel</option>
-							<option value="close">Close</option>
-							<option value="code">Code</option>
-							<option value="type">Type</option>
-						</select>
-					</div>
-				</div>
-				<section class="edit-vars col-xs-12" ng-include="'views/edit-panels/'+selectedCat+'.html'" ng-if="selectedCat"></section>
-			
-			</div>
-		</div>
 		
+		</div>
 
-
+		
 
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -209,5 +205,6 @@
 		<script src="scripts/controllers/main.js"></script>
 		<script src="scripts/services/bootstrapsettings.js"></script>
 		<!-- endbuild -->
+</div>
 </body>
 </html>

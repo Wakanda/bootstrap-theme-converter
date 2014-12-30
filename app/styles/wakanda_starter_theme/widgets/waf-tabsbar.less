@@ -1,0 +1,16 @@
+// ------------------------------------------------------------
+// > TABS BAR
+// ------------------------------------------------------------
+
+.waf-tabsbar{
+	.nav;
+	.nav-tabs;
+
+	> li{
+		&:extend(.nav-tabs > li > a);
+	}
+}
+.waf-tabscontainer{
+	.tab-content;
+	&:extend(.tab-content > .tab-pane);
+}

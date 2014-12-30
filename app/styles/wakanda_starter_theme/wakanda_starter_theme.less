@@ -1,0 +1,56 @@
+@theme: wakanda_starter_theme;
+@prefix: waf-theme;
+
+
+.@{prefix}.@{theme}{
+
+	font-size: 10px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-family: @font-family-base;
+	font-size: @font-size-base;
+	line-height: @line-height-base;
+	color: @text-color;
+	background-color: @body-bg;
+
+	// -------------------------------------------------------------------------------------------
+	// > Bootstrap src
+	// -------------------------------------------------------------------------------------------
+
+	@import 'bootstrap';
+	
+	// -------------------------------------------------------------------------------------------
+	// > Widgets
+	// -------------------------------------------------------------------------------------------
+	
+	// Automatic Controls
+	@import 'widgets/waf-dataGrid';
+	@import 'widgets/waf-login';
+
+	// Form Controls
+	@import 'widgets/waf-button';
+	@import 'widgets/waf-buttonImage';
+	@import 'widgets/waf-checkbox';
+
+	@import 'widgets/waf-radioGroup';
+	@import 'widgets/waf-combobox';
+	@import 'widgets/waf-slider';
+	@import 'widgets/waf-textField';
+	@import 'widgets/waf-textField';
+	@import 'widgets/waf-wysiwyg';
+	@import 'widgets/waf-fileUpload';
+
+	// Containers / Placeholders
+	@import 'widgets/waf-container';
+	@import 'widgets/waf-tabView';
+	@import 'widgets/waf-dialog';
+	@import 'widgets/waf-frame';
+	@import 'widgets/waf-accordion';
+
+	// Misc. Controls
+	@import 'widgets/waf-menuBar';
+	@import 'widgets/waf-progressBar';
+	@import 'widgets/waf-calendar';
+
+	// Wakanda (migration version)
+	// @import 'widgets/waf-tabsbar';	
+}
