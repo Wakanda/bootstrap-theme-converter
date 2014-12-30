@@ -1,0 +1,115 @@
+// ------------------------------------------------------------
+// > DATAGRID
+// ------------------------------------------------------------
+
+// Variables
+
+@dataGrid-bg: @panel-bg;
+@dataGrid-border: @panel-default-border;
+@dataGrid-border-radius : @border-radius-base;
+
+// HEADER
+// ------------------------------------------------------------
+@dataGrid-header-bg: @panel-default-heading-bg;
+@dataGrid-header-border: @panel-default-border;
+
+// BODY
+// ------------------------------------------------------------
+
+@dataGrid-cell-border: @table-border-color;
+
+// Even
+@dataGrid-body-even-bg: @table-bg;
+
+// Odd
+@dataGrid-body-odd-bg: @table-bg-accent;
+
+// FOOTER
+// ------------------------------------------------------------
+@dataGrid-footer-bg: @panel-footer-bg;
+@dataGrid-footer-border: @panel-default-border;
+
+
+.waf-dataGrid{
+	text-align: left;
+	background-color: @dataGrid-bg;
+	border: 1px solid @dataGrid-border;
+	border-radius: @dataGrid-border-radius;
+
+	.container{
+		padding: 0;
+		margin: 0;
+		width: 100% !important;
+	}
+	.waf-dataGrid-header{
+		box-shadow: none !important;
+		border: none !important;
+		background-color: @dataGrid-header-bg;
+		border-bottom: 1px solid @dataGrid-border !important;
+		border-top-left-radius: @dataGrid-border-radius;
+		border-top-right-radius: @dataGrid-border-radius;
+
+		.waf-dataGrid-cell{
+			border-right: 1px solid @panel-default-border !important;
+		}
+	}
+	.waf-dataGrid-body{
+		border-top: 0;
+		border-bottom: 0;
+		
+		.waf-widget-even{
+			background-color: @dataGrid-body-even-bg;
+			border-top: 0;
+			border-left: 0;
+		}
+		.waf-widget-odd{
+			background-color: @dataGrid-body-odd-bg;
+			border-top: 0;
+			border-left: 0;
+		}
+	}
+	.waf-dataGrid-row{
+		border-bottom: 1px solid @dataGrid-cell-border !important;
+		width: 100% !important;
+	}
+	.waf-dataGrid-cell{
+		padding: 0;
+		text-align: left;
+		border-right: 1px solid @dataGrid-cell-border !important;
+
+		.content{
+			height: 100%;
+		}
+		&:last-child{
+			border-right: none;
+		}
+	}
+	.waf-widget-footer{
+		box-shadow: none !important;
+		border: none !important;
+		border-top: 1px solid @dataGrid-footer-border !important;
+		background-color: @dataGrid-footer-bg;
+		border-top-left-radius: none !important;
+		border-bottom-left-radius: @dataGrid-border-radius;
+		border-bottom-right-radius: @dataGrid-border-radius;
+		
+		.waf-status-element{
+			height: 100%;
+		}
+		.waf-toolbar{
+			height: 100%;
+			margin-bottom: 0;
+			position: relative;
+			display: table;
+			vertical-align: middle;
+
+			.waf-toolbar-element{
+				height: 100%;
+				margin: 0;
+				padding-left: 0.25rem;
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+	}
+}
