@@ -51,10 +51,6 @@ angular.module('themeBuilderApp')
 			$scope.themeDetails.studio.label = $scope.themeDetails.name;
 			$scope.secureName = $scope.themeDetails.name.toLowerCase().replace(/ /g, '_');
 			$scope.themeDetails.loadDependencies[0].id = $scope.secureName +'/'+ $scope.secureName +'.css' ;
-
-			less.modifyVars({
-				'@theme': $scope.secureName
-			});
 		};
 		$scope.updateInfos();
 		
@@ -67,9 +63,16 @@ angular.module('themeBuilderApp')
 			bootstrapSettings.get().$promise.then(function(data){
 
 				$scope.lessVars = data.vars;
+				$scope.lessVars['@theme'] = $scope.secureName;
 				$scope.refresh();
 
 				console.log(data.vars);
+
+				// Change theme variable if changed in main page
+				$scope.$watch('themeDetails.name', function() {
+					$scope.lessVars['@theme'] = $scope.secureName;
+					$scope.refresh();
+				});
 			});
 		};
 
