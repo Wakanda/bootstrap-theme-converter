@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="themeBuilderApp" ng-controller="MainCtrl">
 	<head>
 		<meta charset="utf-8">
 		<title>Wakanda Theme Builder</title>
@@ -18,7 +18,7 @@
 
 		<link id="myLess" rel="stylesheet/less" type="text/css" href="styles/wakanda_starter_theme/wakanda_starter_theme.less">
 	</head>
-	<body ng-app="themeBuilderApp" ng-controller="MainCtrl">
+	<!-- <body ng-app="themeBuilderApp" ng-controller="MainCtrl"> -->
 	<div id="page">
 	
 
@@ -81,7 +81,7 @@
 					<!-- Studio only -->
 					<div class="btn-load" ng-show="studio">
 						<br><br>
-						<h3>Load Variables from a config.json or variables.less file</h3><br>
+						<h2>Load Variables from a config.json or variables.less file</h2><br>
 						<div class="btn-group">
 							<button ng-click="selectFile('json')" class="btn btn-default"><i class="ion-upload"></i> config.json</button>
 							<button ng-click="selectFile('less')" class="btn btn-default"><i class="ion-upload"></i> variables.less</button>
@@ -90,7 +90,7 @@
 					
 					<!-- Browser only -->
 					<div ng-hide="studio">
-						<h3>Load Variables from a config.json or variables.less file</h3><br>
+						<h2>Load Variables from a config.json or variables.less file</h2><br>
 						<div id="drop_zone">
 							<i class="ion-upload"></i><br>
 							Drop a "config.json" or "variables.less" file

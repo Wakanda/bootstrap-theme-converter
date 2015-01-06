@@ -14,7 +14,7 @@ angular.module('themeBuilderApp')
 		$scope.tabNav = 'details';
 
 		$scope.themeDetails = {
-			name: 'My Theme',
+			name: 'Wakanda Starter Theme',
 			author: 'Grumpy Cat',
 			repository:{
 				type:'git',
@@ -51,6 +51,10 @@ angular.module('themeBuilderApp')
 			$scope.themeDetails.studio.label = $scope.themeDetails.name;
 			$scope.secureName = $scope.themeDetails.name.toLowerCase().replace(/ /g, '_');
 			$scope.themeDetails.loadDependencies[0].id = $scope.secureName +'/'+ $scope.secureName +'.css' ;
+
+			less.modifyVars({
+				'@theme': $scope.secureName
+			});
 		};
 		$scope.updateInfos();
 		
@@ -64,6 +68,8 @@ angular.module('themeBuilderApp')
 
 				$scope.lessVars = data.vars;
 				$scope.refresh();
+
+				console.log(data.vars);
 			});
 		};
 
@@ -76,6 +82,8 @@ angular.module('themeBuilderApp')
 		$scope.refresh = function(){
 			$timeout(function() {
 				less.modifyVars( $scope.lessVars );
+
+				console.log($scope.lessVars);
 			}, 1000);
 		};
 
