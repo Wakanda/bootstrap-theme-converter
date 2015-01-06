@@ -234,7 +234,7 @@ angular.module('themeBuilderApp')
 			// ------------------------------------------------------------------------------
 
 
-			lessToCssID = 'less:'+ lessToCssID +'styles-bootstrap-bootstrap';
+			lessToCssID = 'less:'+ lessToCssID +'styles-wakanda_starter_theme-wakanda_starter_theme';
 			console.log(lessToCssID);
 
 			$scope.resultedCss = document.getElementById(lessToCssID).innerHTML;

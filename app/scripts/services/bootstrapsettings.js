@@ -9,5 +9,5 @@
  */
 angular.module('themeBuilderApp')
 	.service('bootstrapSettings', function bootstrapSettings($resource) {
-		return $resource('styles/bootstrap/config.json');
+		return $resource('styles/wakanda_starter_theme/config.json');
 	});
