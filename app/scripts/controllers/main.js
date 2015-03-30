@@ -14,7 +14,7 @@ angular.module('themeBuilderApp')
 		$scope.tabNav = 'details';
 
 		$scope.themeDetails = {
-			name: 'Wakanda Starter Theme',
+			name: 'wakanda_starter_theme',
 			author: 'Grumpy Cat',
 			repository:{
 				type:'git',
@@ -26,14 +26,13 @@ angular.module('themeBuilderApp')
 				wakanda:'>=11'
 			},
 			studio:{
-				label:'My Theme',
+				label:'Wakanda Starter Theme',
 				mobile:'false'
 			},
 			version:'1.0.0',
 			loadDependencies:[
 				{
-					id: '',
-					path:'THEMES_CUSTOM'
+					file: ''
 				}
 			]
 		};
@@ -47,10 +46,9 @@ angular.module('themeBuilderApp')
 
 
 		$scope.updateInfos = function(){
-			
-			$scope.themeDetails.studio.label = $scope.themeDetails.name;
-			$scope.secureName = $scope.themeDetails.name.toLowerCase().replace(/ /g, '_');
-			$scope.themeDetails.loadDependencies[0].id = $scope.secureName +'/'+ $scope.secureName +'.css' ;
+			$scope.secureName = $scope.themeDetails.studio.label.toLowerCase().replace(/ /g, '_');
+			$scope.themeDetails.name = $scope.secureName;
+			$scope.themeDetails.loadDependencies[0].file = $scope.secureName +'/'+ $scope.secureName +'.css' ;
 		};
 		$scope.updateInfos();
 		
@@ -69,7 +67,7 @@ angular.module('themeBuilderApp')
 				console.log(data.vars);
 
 				// Change theme variable if changed in main page
-				$scope.$watch('themeDetails.name', function() {
+				$scope.$watch('themeDetails.studio.label', function() {
 					$scope.lessVars['@theme'] = $scope.secureName;
 					$scope.refresh();
 				});
@@ -245,6 +243,7 @@ angular.module('themeBuilderApp')
 			// ------------------------------------------------------------------------------
 
 
+			console.log(lessToCssID);
 			lessToCssID = 'less:'+ lessToCssID +'styles-wakanda_starter_theme-wakanda_starter_theme';
 			console.log(lessToCssID);
 
