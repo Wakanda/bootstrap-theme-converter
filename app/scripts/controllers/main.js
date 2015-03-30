@@ -48,7 +48,7 @@ angular.module('themeBuilderApp')
 		$scope.updateInfos = function(){
 			$scope.secureName = $scope.themeDetails.studio.label.toLowerCase().replace(/ /g, '_');
 			$scope.themeDetails.name = $scope.secureName;
-			$scope.themeDetails.loadDependencies[0].file = $scope.secureName +'/'+ $scope.secureName +'.css' ;
+			$scope.themeDetails.loadDependencies[0].file = $scope.secureName +'.css' ;
 		};
 		$scope.updateInfos();
 		

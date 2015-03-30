@@ -8,6 +8,6 @@
     },	
     "version": "1.0.0", 
     "loadDependencies": [
-        {"file": "wakanda_starter_theme/wakanda_starter_theme.css"}
+        {"file": "wakanda_starter_theme.css"}
     ]
 }
