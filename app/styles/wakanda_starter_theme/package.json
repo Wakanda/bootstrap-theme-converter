@@ -3,11 +3,11 @@
     "author": "Wakanda",
     "copyright": "GNU GPL v3, AGPL v3, Commercial",
     "studio": {
-        "label": "Wakanda Starter Theme",   
+	    "label": "Wakanda Starter Theme", 	
         "mobile": "false"
-    },  
+    },	
     "version": "1.0.0", 
     "loadDependencies": [
-        {"id": "wakanda_starter_theme/wakanda_starter_theme.css", "path": "THEMES_CUSTOM"}
+        {"file": "wakanda_starter_theme.css"}
     ]
 }

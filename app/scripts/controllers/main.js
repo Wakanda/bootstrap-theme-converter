@@ -32,8 +32,7 @@ angular.module('themeBuilderApp')
 			version:'1.0.0',
 			loadDependencies:[
 				{
-					id: '',
-					path:'THEMES_CUSTOM'
+					file: ''
 				}
 			]
 		};
@@ -49,7 +48,7 @@ angular.module('themeBuilderApp')
 		$scope.updateInfos = function(){
 			$scope.secureName = $scope.themeDetails.studio.label.toLowerCase().replace(/ /g, '_');
 			$scope.themeDetails.name = $scope.secureName;
-			$scope.themeDetails.loadDependencies[0].id = $scope.secureName +'/'+ $scope.secureName +'.css' ;
+			$scope.themeDetails.loadDependencies[0].file = $scope.secureName +'/'+ $scope.secureName +'.css' ;
 		};
 		$scope.updateInfos();
 		
