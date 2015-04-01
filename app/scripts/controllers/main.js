@@ -64,10 +64,10 @@ angular.module('themeBuilderApp')
 				$scope.lessVars['@theme'] = $scope.secureName;
 				$scope.refresh();
 
-				console.log(data.vars);
+				//console.log(data.vars);
 
 				// Change theme variable if changed in main page
-				$scope.$watch('themeDetails.studio.label', function() {
+				$scope.$watch('themeDetails.name', function() {
 					$scope.lessVars['@theme'] = $scope.secureName;
 					$scope.refresh();
 				});
@@ -75,7 +75,6 @@ angular.module('themeBuilderApp')
 		};
 
 		$scope.loadBasicVars();
-		
 
 		// ------------------------------------------------------------------------------
 		// > Refresh and apply less vars (with a timeout for direct input typing)
@@ -83,8 +82,7 @@ angular.module('themeBuilderApp')
 		$scope.refresh = function(){
 			$timeout(function() {
 				less.modifyVars( $scope.lessVars );
-
-				console.log($scope.lessVars);
+				//console.log($scope.lessVars);
 			}, 1000);
 		};
 
@@ -136,7 +134,7 @@ angular.module('themeBuilderApp')
 			studio.extension.storage.setItem('fileType', type);
 			studio.sendCommand('ThemeBuilder.selectFile');
 
-			console.log( studio.extension.storage.getItem('selectedFile') );
+			//console.log( studio.extension.storage.getItem('selectedFile') );
 
 			if(studio.extension.storage.getItem('selectedFile') !== 'error'){
 
@@ -148,7 +146,7 @@ angular.module('themeBuilderApp')
 				}
 			}
 			
-			console.log( $scope.lessVars );
+			//console.log( $scope.lessVars );
 			$scope.refresh();
 		};
 
@@ -188,7 +186,7 @@ angular.module('themeBuilderApp')
 
 						$scope.lessVars = getVarsFromJson( evt.target.result );
 						$scope.$apply();
-						console.log(lessVars.vars);
+						//console.log(lessVars.vars);
 					}
 
 					// if file is 'variables.less'
@@ -196,13 +194,13 @@ angular.module('themeBuilderApp')
 
 						$scope.lessVars = getVarsFromLess(evt.target.result);
 						$scope.$apply();
-						console.log( lessVars );
+						//console.log( lessVars );
 					}
 
 					// Modify vars and apply changes
 					$scope.refresh();
 
-					console.log($scope.lessVars);
+					//console.log($scope.lessVars);
 				};
 				reader.onerror = function () {
 					$scope.lessVars = 'error reading file';
@@ -243,9 +241,9 @@ angular.module('themeBuilderApp')
 			// ------------------------------------------------------------------------------
 
 
-			console.log(lessToCssID);
+			//console.log(lessToCssID);
 			lessToCssID = 'less:'+ lessToCssID +'styles-wakanda_starter_theme-wakanda_starter_theme';
-			console.log(lessToCssID);
+			//console.log(lessToCssID);
 
 			$scope.resultedCss = document.getElementById(lessToCssID).innerHTML;
 			console.log($scope.resultedCss);
