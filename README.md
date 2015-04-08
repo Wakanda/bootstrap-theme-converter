@@ -1,4 +1,4 @@
-Theme Builder
+Bootstrap Theme Converter
 =============
 
 A Wakanda Extension to create Wakanda bootstrap compatible themes (made with AngularJs & Less).
