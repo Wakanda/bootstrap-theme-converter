@@ -10,12 +10,43 @@
 angular.module('themeBuilderApp')
 	.controller('MainCtrl', function ($scope, $timeout, bootstrapSettings, $window) {
 
+		// this should equal folder
+		$scope.extensionName = 'bootstrap-theme-converter';
 
 		$scope.tabNav = 'details';
 
+		// Studio or browser ?
+		if( angular.isDefined( $window.studio ) ){
+			$scope.studio = true;
+			$scope.studioVersion = $window.studio.mainProductVersion;
+		} else{
+			$scope.studio = false;
+			$scope.studioVersion = 11;
+		}
+
+		var engineVersion = '';
+		if($scope.studioVersion < 11){
+			engineVersion = '<=10';
+		}else{
+			engineVersion = '>=11';
+		}
+
+		var themeDependencies = [];
+
+		if($scope.studioVersion < 11){
+			themeDependencies = [{
+		        "id": "",
+		        "path": "THEMES_CUSTOM"
+			}];
+		}else{
+			themeDependencies = [{
+				"file": ""
+			}];
+		}
+
 		$scope.themeDetails = {
 			name: 'wakanda_starter_theme',
-			author: 'Grumpy Cat',
+			author: 'Wakanda Developer',
 			repository:{
 				type:'git',
 				url:'Repo Url'
@@ -23,32 +54,27 @@ angular.module('themeBuilderApp')
 			copyright:'GNU GPL v3, AGPL v3, Commercial',
 			license:'MIT',
 			engines:{
-				wakanda:'>=11'
+				wakanda:engineVersion
 			},
 			studio:{
 				label:'Wakanda Starter Theme',
 				mobile:'false'
 			},
 			version:'1.0.0',
-			loadDependencies:[
-				{
-					file: ''
-				}
-			]
+			loadDependencies:themeDependencies
 		};
-
-		// Studio or browser ?
-		if( angular.isDefined( $window.studio ) ){
-			$scope.studio = true;
-		} else{
-			$scope.studio = false;
-		}
-
 
 		$scope.updateInfos = function(){
 			$scope.secureName = $scope.themeDetails.studio.label.toLowerCase().replace(/ /g, '_');
 			$scope.themeDetails.name = $scope.secureName;
-			$scope.themeDetails.loadDependencies[0].file = $scope.secureName +'.css' ;
+
+
+			if($scope.studioVersion < 11){
+				$scope.themeDetails.loadDependencies[0].id = $scope.secureName +'.css';
+			}else{
+				$scope.themeDetails.loadDependencies[0].file = $scope.secureName +'.css';
+			}
+
 		};
 		$scope.updateInfos();
 		
@@ -132,7 +158,7 @@ angular.module('themeBuilderApp')
 		$scope.selectFile = function(type){
 
 			studio.extension.storage.setItem('fileType', type);
-			studio.sendCommand('ThemeBuilder.selectFile');
+			studio.sendCommand($scope.extensionName+'.selectFile');
 
 			//console.log( studio.extension.storage.getItem('selectedFile') );
 
@@ -246,7 +272,7 @@ angular.module('themeBuilderApp')
 			//console.log(lessToCssID);
 
 			$scope.resultedCss = document.getElementById(lessToCssID).innerHTML;
-			console.log($scope.resultedCss);
+			//console.log($scope.resultedCss);
 
 
 			// if in browser
@@ -273,7 +299,7 @@ angular.module('themeBuilderApp')
 				studio.extension.storage.setItem('themeJson', angular.toJson($scope.themeDetails).toString() );
 				studio.extension.storage.setItem('themeCss', $scope.resultedCss.toString() );
 
-				studio.sendCommand('ThemeBuilder.exportTheme');
+				studio.sendCommand($scope.extensionName+'.exportTheme');
 			}
 			
 

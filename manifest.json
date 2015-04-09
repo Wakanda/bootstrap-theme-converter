@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "BootstrapThemeConverter",
+		"name": "Bootstrap Theme Converter",
 		"version": "1.0.0",
 		"description": "Build a Wakanda Custom Theme within a minute !",
 		"icon": "icon.png",
@@ -13,7 +13,7 @@
 		"actions": [
 			{
 				"name": "initBuilder",
-				"title": "Theme Builder"
+				"title": "Theme Converter"
 			},
 			{
 				"name": "exportTheme",

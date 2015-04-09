@@ -13,6 +13,41 @@
 	color: @text-color;
 	background-color: @body-bg;
 
+	/**
+	 * -------------------------------------------------------
+	 * @section Box
+	 * -------------------------------------------------------
+	 */
+	.waf-ui-box {
+		border: 1px solid @gray-lighter;
+	  	border-radius: @border-radius-base;
+		background: @body-bg;
+		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+	}
+	.waf-ui-box > .waf-ui-header {
+		border-width: 0 0 1px 0;
+		background-color: @brand-primary;
+		border-style: inherit;
+		border-color: @gray-lighter;
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+	}
+	.waf-ui-box > .waf-ui-footer {
+		border-width: 1px 0 0 0;
+		border-style: inherit;
+		border-color: inherit;
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+	}
+	.waf-ui-box > .waf-ui-button {
+		font-family: @font-family-base;
+		font-size: @font-size-small;
+		color: @text-color;
+		background-color: @btn-default-bg;
+		border: 1px solid @btn-default-border;
+		border-radius: @border-radius-small;
+	}
+
 	// -------------------------------------------------------------------------------------------
 	// > Bootstrap src
 	// -------------------------------------------------------------------------------------------
